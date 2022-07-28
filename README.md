@@ -24,6 +24,19 @@
 4.在m2前面补充数量为M长度的0，之后以h作为初始向量进行加密，即可得到长度扩展攻击的hash值。之后与正确答案对比发现攻击成功。
 
 
+# 代码解释
+
+设置全局变量，设置攻击bit数
+
+
+![image](https://user-images.githubusercontent.com/75195549/181448823-5a84c3e3-9401-4f83-a017-ee5a24b4fcab.png)
+
+
+
+对h1进行一次hash，对h2进行两次hash，在随后看是否能追上形成一个环
+
+
+![image](https://user-images.githubusercontent.com/75195549/181448628-33b833a9-a5ad-4986-81e6-ffb1839995d9.png)
 
 
 # 结果展示
