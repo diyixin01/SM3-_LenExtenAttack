@@ -53,6 +53,17 @@
 
 
 
+# 转大端模式
+
+H是之前的压缩值，在fast_sm3.cpp的SM3_paddingpart的最后，是把ctx->state的大端内存转成了小端的,我们现在要把H写回到int类型的state中，就要转成大端
+
+
+
+![image](https://user-images.githubusercontent.com/75195549/181454842-ee0314d4-5b80-42b2-9c31-8795f7f7a0b9.png)
+
+
+
+
 # 结果展示
 
 ![image](https://user-images.githubusercontent.com/75195549/180384840-bcf2a848-7f00-480b-8493-9307586b5417.png)
