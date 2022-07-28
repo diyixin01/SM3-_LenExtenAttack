@@ -34,17 +34,23 @@
 
 # 代码解释
 
-设置全局变量，设置攻击bit数
-
-
-![image](https://user-images.githubusercontent.com/75195549/181448823-5a84c3e3-9401-4f83-a017-ee5a24b4fcab.png)
+# LenExtenAttack
+传入原始消息的Hash值，和其长度(如果不能确定原始消息长度，那么请先想办法获取)，然后传入拓展部分的M3，计算出SM3(M||padding||M3)的值
 
 
 
-对h1进行一次hash，对h2进行两次hash，在随后看是否能追上形成一个环
+首先计算长为Len的消息H，需要多少个64byte，然后开辟一个char数组，用于表示M' = M||padding||M3,随后置零并将M3拷贝到M的尾部。
 
 
-![image](https://user-images.githubusercontent.com/75195549/181448628-33b833a9-a5ad-4986-81e6-ffb1839995d9.png)
+
+![image](https://user-images.githubusercontent.com/75195549/181454014-d81f2b9b-9424-441d-b82a-934736f52f2d.png)
+
+
+# 修改一下CTX的参数
+我们需要给SM3函数一个已经压缩完一个block的状态，也就是说，input是M'=M||M3,但是传入SM3_process的数据长度此时只有M3.len了而且已压缩长度应该是已压缩的block的长度 ctx->msglen = tmp*8
+
+![image](https://user-images.githubusercontent.com/75195549/181454502-875d729a-f7aa-47d1-bd3f-af15f40148e3.png)
+
 
 
 # 结果展示
@@ -53,4 +59,4 @@
 
 
 
-。
+
